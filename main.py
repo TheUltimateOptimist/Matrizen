@@ -38,6 +38,57 @@ def getNumbersLengthList(list):
     return lengthList
 
 
+class MatrixCalculator:
+    def add(a, b):
+        if (len(a) == len(b)) and (len(a[0]) == len(b[0])):
+            newValue = []
+            for i, row in enumerate(a):
+                newRow = []
+                for j, number in enumerate(row):
+                    newRow.append(number + b[i][j])
+                newValue.append(newRow)
+            return newValue
+        else:
+            print(
+                "ERROR: FÜR DIE ADDITION ZWEIER MATRIZEN MÜSSEN DIE DIMENSIONEN ÜBEREINSTIMMEN")
+            return None
+
+    def minus(a, b):
+        if (len(a) == len(b)) and (len(a[0]) == len(b[0])):
+            newValue = []
+            for i, row in enumerate(a):
+                newRow = []
+                for j, number in enumerate(row):
+                    newRow.append(number - b[i][j])
+                newValue.append(newRow)
+            return newValue
+        else:
+            print(
+                "ERROR: FÜR DIE ADDITION ZWEIER MATRIZEN MÜSSEN DIE DIMENSIONEN ÜBEREINSTIMMEN")
+            return None
+
+    def transpose(a):
+        newValue = []
+        for i in range(len(a[0])):
+            newRow = []
+            for row in a:
+                newRow.append(row[i])
+            newValue.append(newRow)
+        return newValue
+
+    def scalarMultiply(a, b):
+        newValue = []
+        for row in b:
+            newRow = []
+            for number in row:
+                newRow.append(a*number)
+            newValue.append(newRow)
+        return newValue
+
+    def matrixMultiply(a, b):
+        return a
+
+
 class Matrix:
     def __init__(self, name):
         self.value = []
@@ -65,6 +116,103 @@ class Matrix:
                 outputString += str(element)
                 outputString += additionalSpaces[i][j]*" "
             print(outputString)
+
+    def isQuadraticMatrix(self):
+        if len(self.value) == len(self.value[0]):
+            return True
+        else:
+            return False
+
+    def isUpperTriangleMatrix(self):
+        m = len(self.value)
+        if self.isQuadraticMatrix():
+            result = True
+            for i in range(m):
+                for j in range(m):
+                    if j < i and self.value[i][j] != 0:
+                        result = False
+            return result
+        else:
+            return False
+
+    def isLowerTriangleMatrix(self):
+        m = len(self.value)
+        if self.isQuadraticMatrix():
+            result = True
+            for i in range(m):
+                for j in range(m):
+                    if i < j and self.value[i][j] != 0:
+                        result = False
+            return result
+        else:
+            return False
+
+    def isIdentityMatrix(self):
+        m = len(self.value)
+        if self.isQuadraticMatrix():
+            result = True
+            for i in range(m):
+                for j in range(m):
+                    if (i == j and self.value[i][j] != 1) or (i != j and self.value[i][j] != 0):
+                        result = False
+            return result
+        else:
+            return False
+
+    def isNullMatrix(self):
+        m = len(self.value)
+        n = len(self.value[0])
+        for i in range(m):
+            for j in range(n):
+                if self.value[i][j] != 0:
+                    return False
+        return True
+
+    def isDiagonalMatrix(self):
+        m = len(self.value)
+        if self.isQuadraticMatrix():
+            for i in range(m):
+                for j in range(m):
+                    if i != j and self.value[i][j] != 0:
+                        return False
+            return True
+        else:
+            return False
+
+    def isSymmetricMatrix(self):
+        if self.isQuadraticMatrix():
+            m = len(self.value)
+            transponedMatrix = MatrixCalculator.transpose(self.value)
+            for i in range(m):
+                for j in range(m):
+                    if self.value[i][j] != transponedMatrix[i][j]:
+                        return False
+            return True
+        else:
+            return False
+
+    def getProperties(self):
+        properties = []
+        if self.isNullMatrix():
+            properties.append("Nullmatrix")
+        if self.isQuadraticMatrix():
+            properties.append("quadratische Matrix")
+            if self.isSymmetricMatrix():
+                properties.append("symmetrische Matrix")
+            if self.isIdentityMatrix():
+                properties.append("Einheitsmatrix")
+                properties.append("Diagonalmatrix")
+                properties.append("obere Dreieckmatrix")
+                properties.append("untere Dreiecksmatrix")
+            elif self.isDiagonalMatrix():
+                properties.append("Diagonalmatrix")
+                properties.append("obere Dreiecksmatrix")
+                properties.append("untere Dreiecksmatrix")
+            elif self.isUpperTriangleMatrix():
+                properties.append("obere Dreiecksmatrix")
+            elif self.isLowerTriangleMatrix():
+                properties.append("untere Dreiecksmatrix")
+        return properties
 
 
 def isNotAVariable(s):
@@ -141,6 +289,54 @@ def calculateTerm(expression):
         else:
             a = getMatrix(a).value
         return MatrixCalculator.transponed(a)
+    elif expression.__contains__("."):
+        a = expression.split(".")[0].strip()
+        a = getMatrix(a)
+        type = expression.split(".")[1].strip()
+        match type:
+            case "Eigenschaften":
+                eigenschaften = a.getProperties()
+                print("Eigenschaften: ")
+                for element in eigenschaften:
+                    print(element)
+            case "symmetrischeMatrix":
+                if a.isSymmetricMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case "obereDreiecksmatrix":
+                if a.isUpperTriangleMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case "untereDreiecksmatrix":
+                if a.isLowerTriangleMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case "Einheitsmatrix":
+                if a.isIdentityMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case "Nullmatrix":
+                if a.isNullMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case "Diagonalmatrix":
+                if a.isDiagonalMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case "quadratischeMatrix":
+                if a.isQuadraticMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case _:
+                print(f"ERROR: EIGENSCHAFT {type} NOT FOUND")
+        return None
     else:
         expression = expression.strip()
         if isNotAVariable(expression):
@@ -152,64 +348,15 @@ def calculateTerm(expression):
 def evaluateExpression(expression):
     matrix = Matrix("m")
     if expression.__contains__("=") == False:
-        matrix.value = calculateTerm(expression)
-        matrix.printMatrix()
+        expressionResult = calculateTerm(expression)
+        if expressionResult != None:
+            matrix.value = calculateTerm(expression)
+            matrix.printMatrix()
     elif expression.__contains__("="):
         matrix.value = calculateTerm(expression.split("=")[1])
         matrix.name = expression.split("=")[0].strip()
         removeMatrix(matrix.name)
         allMatrices.append(matrix)
-
-
-class MatrixCalculator:
-    def add(a, b):
-        if (len(a) == len(b)) and (len(a[0]) == len(b[0])):
-            newValue = []
-            for i, row in enumerate(a):
-                newRow = []
-                for j, number in enumerate(row):
-                    newRow.append(number + b[i][j])
-                newValue.append(newRow)
-            return newValue
-        else:
-            print(
-                "ERROR: FÜR DIE ADDITION ZWEIER MATRIZEN MÜSSEN DIE DIMENSIONEN ÜBEREINSTIMMEN")
-            return None
-
-    def minus(a, b):
-        if (len(a) == len(b)) and (len(a[0]) == len(b[0])):
-            newValue = []
-            for i, row in enumerate(a):
-                newRow = []
-                for j, number in enumerate(row):
-                    newRow.append(number - b[i][j])
-                newValue.append(newRow)
-            return newValue
-        else:
-            print(
-                "ERROR: FÜR DIE ADDITION ZWEIER MATRIZEN MÜSSEN DIE DIMENSIONEN ÜBEREINSTIMMEN")
-            return None
-
-    def transpose(a):
-        newValue = []
-        for i in range(len(a[0])):
-            newRow = []
-            for row in a:
-                newRow.append(row[i])
-            newValue.append(newRow)
-        return newValue
-
-    def scalarMultiply(a, b):
-        newValue = []
-        for row in b:
-            newRow = []
-            for number in row:
-                newRow.append(a*number)
-            newValue.append(newRow)
-        return newValue
-
-    def matrixMultiply(a, b):
-        return a
 
 
 class MatrixGenerator:
