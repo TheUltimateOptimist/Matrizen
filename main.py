@@ -26,7 +26,7 @@ def calculateTerm(expression, matrixContainer):
             b = MatrixGenerator().generateMatrix(b)
         else:
             b = matrixContainer.getMatrix(b).value
-        if numberOfScalars < 2:
+        if numberOfScalars >= 1:
             if aIsScalar:
                 return MatrixCalculator.scalarMultiply(a, b)
             else:
@@ -64,6 +64,13 @@ def calculateTerm(expression, matrixContainer):
         else:
             a = matrixContainer.getMatrix(a).value
         return MatrixCalculator.transponed(a)
+    elif expression.__contains__("invert"):
+        a = expression.split("(")[1].split(")")[0].strip()
+        if matrixContainer.notContainsMatrix(a):
+            a = MatrixGenerator().generateMatrix(a)
+        else:
+            a = matrixContainer.getMatrix(a).value
+        return MatrixCalculator.invert(a)
     elif expression.__contains__("."):
         a = expression.split(".")[0].strip()
         a = matrixContainer.getMatrix(a)
@@ -106,6 +113,11 @@ def calculateTerm(expression, matrixContainer):
                     print("False")
             case "quadratischeMatrix":
                 if a.isQuadraticMatrix():
+                    print("True")
+                else:
+                    print("False")
+            case "invertierbareMatrix":
+                if a.isInvertableMatrx():
                     print("True")
                 else:
                     print("False")

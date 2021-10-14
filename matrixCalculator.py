@@ -50,7 +50,7 @@ class MatrixCalculator:
         # following return statement is just for now
         return a
 
-    def inverse(a):
+    def invert(a):
         # todo: implement matrix inversing
         # following return statement is just for now
         return 0

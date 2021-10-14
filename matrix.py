@@ -105,6 +105,11 @@ class Matrix:
         else:
             return False
 
+    def isInvertableMatrix(self):
+        # todo implement invertable checking
+        # following returrn statement is just for now
+        return False
+
     def getProperties(self):
         properties = []
         if self.isNullMatrix():
@@ -113,6 +118,8 @@ class Matrix:
             properties.append("quadratische Matrix")
             if self.isSymmetricMatrix():
                 properties.append("symmetrische Matrix")
+            if self.isInvertableMatrix():
+                properties.append("invertierbare Matrix")
             if self.isIdentityMatrix():
                 properties.append("Einheitsmatrix")
                 properties.append("Diagonalmatrix")
