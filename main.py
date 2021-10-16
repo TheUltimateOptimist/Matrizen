@@ -17,9 +17,9 @@ def evaluateExpression(expression, variables):
 class TerminalSession:
     variables = Variables()
 
-    def interact(self, variables):
+    def interact(self):
         operation = input(">: ")
-        evaluateExpression(operation, self.matrixContainer)
+        evaluateExpression(operation, self.variables)
         self.interact()
 
 

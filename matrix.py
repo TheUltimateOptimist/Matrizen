@@ -1,4 +1,4 @@
-from mathFunctionality import getNumbersLengthList
+from listHelper import getNumbersLengthList
 from matrixCalculator import MatrixCalculator
 
 

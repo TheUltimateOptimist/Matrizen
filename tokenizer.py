@@ -1,18 +1,3 @@
-# index 1 and index 2 identify the part of the list that will be split of of the main list and returned
-def split_list(index1, index2, list):
-    finalList = []
-    for i in range(index1, index2 + 1):
-        finalList.append(list[i])
-    return finalList
-
-
-def delete_range(index1, index2, list):
-    n = index2 - index1 + 1
-    for _ in range(n):
-        list.pop(index1)
-    return list
-
-
 class Tokenizer:
     """
     tokenizes a string returning list with extracted tokens
@@ -74,92 +59,13 @@ class Tokenizer:
                 previousGroupIndex = -1
         return resultList
 
+    # not needed!
     def tokenizeFromConsole(self):
+        """
+        function is not need!
+        added it only for testing
+        but i am not strong enough to delete it
+        """
         textToTokenize = input("text to tokenize: ")
         print(self.tokenize(textToTokenize))
         self.tokenizeFromConsole()
-
-
-#tokenizer = Tokenizer("mathematical")
-# tokenizer.tokenizeFromConsole()
-
-
-class PunktVorStrichCalculator:
-    def __getClosingBraceIndex(self, openingBraceIndex, list):
-        print("data:")
-        print(openingBraceIndex)
-        print(list)
-        state = 0
-        i = openingBraceIndex + 1
-        while i < len(list):
-            element = list[i]
-            if element == "(":
-                state += 1
-            elif element == ")" and state != 0:
-                state -= 1
-            elif element == ")" and state == 0:
-                return i
-            i += 1
-            print("state: ")
-            print(state)
-
-    def calculate(self, tokenizedList):
-        i = 0
-        while i < len(tokenizedList):
-            token = tokenizedList[i]
-            if token == "(":
-                print(i)
-                print(tokenizedList)
-                closingBraceIndex = self.__getClosingBraceIndex(
-                    i, tokenizedList)
-                print("kdddk:")
-                print(closingBraceIndex)
-                tokenizedList[i] = self.calculate(split_list(
-                    i + 1, closingBraceIndex - 1, tokenizedList))
-                tokenizedList = delete_range(
-                    i + 1, closingBraceIndex, tokenizedList)
-            i += 1
-        i = 0
-        while i < len(tokenizedList):
-            token = tokenizedList[i]
-            if token == "*":
-                tokenizedList[i] = float(
-                    tokenizedList[i - 1]) * float(tokenizedList[i + 1])
-                del tokenizedList[i + 1]
-                del tokenizedList[i - 1]
-            elif token == "/":
-                tokenizedList[i] = float(
-                    tokenizedList[i - 1]) / float(tokenizedList[i + 1])
-                del tokenizedList[i + 1]
-                del tokenizedList[i - 1]
-            else:
-                i += 1
-        i = 0
-        while i < len(tokenizedList):
-            token = tokenizedList[i]
-            if token == "+":
-                print(f"+: {i}")
-                tokenizedList[i] = float(
-                    tokenizedList[i - 1]) + float(tokenizedList[i + 1])
-                del tokenizedList[i + 1]
-                del tokenizedList[i - 1]
-            elif token == "-":
-                print(f"-: {i}")
-                tokenizedList[i] = float(
-                    tokenizedList[i - 1]) - float(tokenizedList[i + 1])
-                del tokenizedList[i + 1]
-                del tokenizedList[i - 1]
-            else:
-                i += 1
-        print(tokenizedList)
-        return tokenizedList[0]
-
-
-test = "2+ 2 *(3 + 3* (3 +3))"
-tokenizer = Tokenizer("mathematical")
-tokenizedList = tokenizer.tokenize(test)
-print(tokenizedList)
-print(PunktVorStrichCalculator().calculate(
-    tokenizedList))
-print("right one:")
-print(eval(test))
