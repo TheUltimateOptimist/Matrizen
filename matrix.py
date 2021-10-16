@@ -194,8 +194,3 @@ class Matrix:
             elif self.isLowerTriangleMatrix():
                 properties.append("untere Dreiecksmatrix")
         return properties
-
-    def isInvertable(self):
-        # todo: implement invertable checking
-        # following return statement is only for now
-        return False
