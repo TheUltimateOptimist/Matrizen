@@ -175,11 +175,11 @@ class Matrix:
         if self.isNullMatrix():
             properties.append("Nullmatrix")
         if self.isQuadraticMatrix():
-            properties.append("quadratische Matrix")
+            properties.append("quadratisch")
             if self.isSymmetricMatrix():
-                properties.append("symmetrische Matrix")
+                properties.append("symmetrisch")
             if self.isInvertableMatrix():
-                properties.append("invertierbare Matrix")
+                properties.append("invertierbar")
             if self.isIdentityMatrix():
                 properties.append("Einheitsmatrix")
                 properties.append("Diagonalmatrix")
