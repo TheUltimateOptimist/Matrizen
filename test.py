@@ -5,6 +5,8 @@ class Test:
     def __plus__(self):
         self.value += 1
 
+    def new(self, value):
+        return Test(value)
 
-test = Test(3)
-print(test.value)
+
+print(Test(2).new(3).value)

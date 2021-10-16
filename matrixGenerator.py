@@ -116,5 +116,5 @@ class MatrixGenerator:
                 return self.randomMatrix(value, m, n)
             case _:
                 printRed(
-                    f"ERROR: MATRIX COULD NOT BE GENERATED DUE TO UNKNOWN MATRIX TYPE: '{matrixType}'")
+                    f"ERROR: MATRIX NICHT GENERIERBAR AUFGRUND VON UNBEKANNTEM MATRIX TYP: '{matrixType}'")
                 return None

@@ -1,11 +1,10 @@
 from listHelper import getNumbersLengthList
-from matrixCalculator import MatrixCalculator
+from number import Number
 
 
 class Matrix:
-    def __init__(self, name):
-        self.value = []
-        self.name = name
+    def __init__(self, value):
+        self.value = value
 
     def getDimensions(self):
         if len(self.value) == 0:
@@ -18,7 +17,7 @@ class Matrix:
         for list in self.value:
             for element in list:
                 sum += element
-        return sum
+        return Number(sum)
 
     def printMatrix(self):
         list = self.value
@@ -30,6 +29,62 @@ class Matrix:
                 outputString += str(element)
                 outputString += additionalSpaces[i][j]*" "
             print(outputString)
+
+    def addMatrix(self, matrix):
+        if (len(self.value) == len(matrix.value)) and (len(self.value[0]) == len(matrix.value[0])):
+            newValue = []
+            for i, row in enumerate(self.value):
+                newRow = []
+                for j, number in enumerate(row):
+                    newRow.append(number + matrix.value[i][j])
+                newValue.append(newRow)
+            return Matrix(newValue)
+        else:
+            print(
+                "ERROR: FÜR DIE ADDITION ZWEIER MATRIZEN MÜSSEN DIE DIMENSIONEN ÜBEREINSTIMMEN")
+            return None
+
+    def subtractMatrix(self, matrix):
+        if (len(self.value) == len(matrix.value)) and (len(self.value[0]) == len(matrix.value[0])):
+            newValue = []
+            for i, row in enumerate(self.value):
+                newRow = []
+                for j, number in enumerate(row):
+                    newRow.append(number - matrix.value[i][j])
+                newValue.append(newRow)
+            return newValue
+        else:
+            print(
+                "ERROR: FÜR DIE SUBTRAKTION ZWEIER MATRIZEN MÜSSEN DIE DIMENSIONEN ÜBEREINSTIMMEN")
+            return None
+
+    def multiplyWithMatrix(self, matrix):
+        # todo: implement matrix multiplying
+        # following return statement is just for now
+        return matrix
+
+    def multiplyWithNumber(self, number):
+        newValue = []
+        for row in self.value:
+            newRow = []
+            for element in row:
+                newRow.append(number.value*element)
+            newValue.append(newRow)
+        return Matrix(newValue)
+
+    def transpose(self):
+        newValue = []
+        for i in range(len(self.value[0])):
+            newRow = []
+            for row in self.value:
+                newRow.append(row[i])
+            newValue.append(newRow)
+        return Matrix(newValue)
+
+    def invert(self):
+        # todo: implement matrix inversing
+        # following return statement is just for now
+        return 0
 
     def isQuadraticMatrix(self):
         if len(self.value) == len(self.value[0]):
@@ -96,7 +151,7 @@ class Matrix:
     def isSymmetricMatrix(self):
         if self.isQuadraticMatrix():
             m = len(self.value)
-            transponedMatrix = MatrixCalculator.transpose(self.value)
+            transponedMatrix = Matrix(self.value).transpose()
             for i in range(m):
                 for j in range(m):
                     if self.value[i][j] != transponedMatrix[i][j]:
@@ -110,7 +165,12 @@ class Matrix:
         # following returrn statement is just for now
         return False
 
-    def getProperties(self):
+    def isInvertable(self):
+        # todo: implement invertable checking
+        # following return statement is only for now
+        return False
+
+    def getAttributes(self):
         properties = []
         if self.isNullMatrix():
             properties.append("Nullmatrix")

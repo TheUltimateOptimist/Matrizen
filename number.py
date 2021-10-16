@@ -8,7 +8,7 @@ class Number:
     def subtractNumber(self, number):
         return Number(self.value + number.value)
 
-    def multiplyByNumber(self, number):
+    def multiplyWithNumber(self, number):
         return Number(self.value + number.value)
 
     def divideByNumber(self, number):
