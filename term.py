@@ -2,6 +2,7 @@ from listHelper import split_list, delete_range
 from calculator import Calculator
 from tokenListPreparer import TokenListPreparer
 from tokenizer import Tokenizer
+from mathFunctions import getClosingBraceIndex
 
 
 class Term:
@@ -40,7 +41,7 @@ class Term:
             if token == "(":
                 print(i)
                 print(self.tokensList)
-                closingBraceIndex = self.__getClosingBraceIndex(
+                closingBraceIndex = getClosingBraceIndex(
                     i, self.tokensList)
                 print("kdddk:")
                 print(closingBraceIndex)
@@ -53,28 +54,28 @@ class Term:
         while i < len(self.tokensList):
             token = self.tokensList[i]
             if token.__class__ == "<class 'str'>" and token == "*":
-                self.tokensList[i] = Calculator().multiply(
-                    self.tokensList[i - 1], self.tokensList[i + 1])
+                self.tokensList[i] = Calculator(
+                    self.tokensList[i - 1], self.tokensList[i + 1]).multiply()
                 del self.tokensList[i + 1]
                 del self.tokensList[i - 1]
             elif token.__class__ == "<class 'str'>" and token == "/":
-                self.tokensList[i] = Calculator().divide(
-                    self.tokensList[i - 1], self.tokensList[i + 1])
+                self.tokensList[i] = Calculator(
+                    self.tokensList[i - 1], self.tokensList[i + 1]).divide()
                 del self.tokensList[i + 1]
                 del self.tokensList[i - 1]
             elif token.__class__ == "<class 'str'>" and token == "^":
-                self.tokensList[i] = Calculator().exponentiate(
-                    self.tokensList[i + -1], self.tokensList[i - 1])
+                self.tokensList[i] = Calculator(
+                    self.tokensList[i + -1], self.tokensList[i - 1]).exponentiate()
                 del self.tokensList[i + 1]
                 del self.tokensList[i - 1]
             elif token.__class__ == "<class 'str'>" and token == "transp":
-                self.tokensList[i] = Calculator().transpose(
-                    self.tokensList[i + 1])
+                self.tokensList[i] = Calculator(
+                    self.tokensList[i + 1]).transpose()
                 del self.tokensList[i + 1]
                 i += 1
             elif token.__class__ == "<class 'str'>" and token == "invert":
-                self.tokensList[i] = Calculator().invert(
-                    self.tokensList[i + 1])
+                self.tokensList[i] = Calculator(
+                    self.tokensList[i + 1]).invert()
                 del self.tokensList[i + 1]
                 i += 1
             else:
@@ -84,14 +85,14 @@ class Term:
             token = self.tokensList[i]
             if token == "+":
                 print(f"+: {i}")
-                self.tokensList[i] = Calculator().add(
-                    self.tokensList[i - 1], self.tokensList[i + 1])
+                self.tokensList[i] = Calculator(
+                    self.tokensList[i - 1], self.tokensList[i + 1]).add()
                 del self.tokensList[i + 1]
                 del self.tokensList[i - 1]
             elif token == "-":
                 print(f"-: {i}")
-                self.tokensList[i] = Calculator().subtract(
-                    self.tokensList[i - 1], self.tokensList[i + 1])
+                self.tokensList[i] = Calculator(
+                    self.tokensList[i - 1], self.tokensList[i + 1]).subtract()
                 del self.tokensList[i + 1]
                 del self.tokensList[i - 1]
             else:

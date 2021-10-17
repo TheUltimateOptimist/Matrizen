@@ -1,3 +1,4 @@
+from color import printRed
 from listHelper import getNumbersLengthList
 from number import Number
 
@@ -62,6 +63,22 @@ class Matrix:
         # todo: implement matrix multiplying
         # following return statement is just for now
         return matrix
+
+    def divideByMatrix(self, matrix):
+        # todo: implement matrix division
+        # following return statement is just for now
+        return matrix
+
+    def exponentiateByNumber(self, number):
+        # todo: implement matrix division
+        # following return statement is just for now
+        return self
+
+    def divideByNumber(self, number):
+        if number.value == 0:
+            printRed("ERROR: DAS TEILEN DURCH O IST NICHT DEFINIERT!")
+        else:
+            return self.multiplyWithNumber(Number(1/number.value))
 
     def multiplyWithNumber(self, number):
         newValue = []
