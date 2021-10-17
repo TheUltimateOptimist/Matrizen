@@ -9,6 +9,7 @@ class TokenListPreparer:
         self.tokenList = tokenList
 
     def __mergeDoubleOperators(self):
+        print(self.tokenList)
         i = 0
         while i < len(self.tokenList):
             if (self.tokenList[i] == "+" and self.tokenList[i - 1] == "+") or (self.tokenList[i] == "-" and self.tokenList[i - 1] == "-"):
@@ -22,6 +23,7 @@ class TokenListPreparer:
             else:
                 # i wird um eins erhöht
                 i += 1
+        print(self.tokenList)
         i = 0
         while i < len(self.tokenList):
             # delete all "+" whose left neighbour is an "*", "/", "^"

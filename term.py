@@ -8,7 +8,7 @@ from mathFunctions import getClosingBraceIndex
 class Term:
     def __init__(self, textString):
         self.tokensList = TokenListPreparer(
-            Tokenizer("mathematical").tokenize(textString)).prepare()
+            Tokenizer().tokenize(textString)).prepare()
 
     def __printSolution(self, solution):
         if str(solution.__class__) == "<class 'matrix.Matrix'>":

@@ -9,7 +9,7 @@ class Number:
         return Number(self.value + number.value)
 
     def subtractNumber(self, number):
-        return Number(self.value + number.value)
+        return Number(self.value - number.value)
 
     def multiplyWithNumber(self, number):
         return Number(self.value + number.value)

@@ -1,3 +1,7 @@
+from language import matrixChecks, generateMatrixCommands
+from mathFunctions import isNumber
+
+
 class Tokenizer:
     """
     tokenizes a string returning list with extracted tokens
@@ -12,18 +16,22 @@ class Tokenizer:
 
     """
 
-    def __init__(self, rule, tokens=[], groups=[]):
-        match rule:
-            case "custom":
-                self.tokens = tokens
-                self.groups = groups
-            case "mathematical":
-                self.tokens = [[33], [40, 45], [
-                    47, 57], [65, 90], [94], [97, 122]]
-                self.groups = [[[48, 57]], [[65, 90], [97, 122]]]
-            case _:
-                self.tokens = []
-                self.groups = []
+    def __init__(self):
+        self.tokens = [[33], [40, 45], [
+            47, 57], [94], ]
+        self.words = matrixChecks + generateMatrixCommands
+
+    def __isWord(self, textString):
+        for word in self.words:
+            if word == textString:
+                return True
+        return False
+
+    def __isContainedInWord(self, textString):
+        for word in self.words:
+            if word.__contains__(textString):
+                return True
+        return False
 
     def __matches(self, code):
         for range in self.tokens:
@@ -33,30 +41,36 @@ class Tokenizer:
                 return True
         return False
 
-    def __getGroup(self, code):
-        for i, group in enumerate(self.groups):
-            for range in group:
-                if len(range) == 1 and code == range[0]:
-                    return i
-                elif len(range) == 2 and code >= range[0] and code <= range[1]:
-                    return i
-        return -1
+    def __isNotALetter(self, code):
+        if (code < 65 or code > 90) and (code < 97 or code > 122):
+            return True
+        else:
+            return False
 
     def tokenize(self, input):
         resultList = []
-        previousGroupIndex = -1
+        word = ""
+        number = ""
         for i in range(len(input)):
             code = ord(input[i])
             if self.__matches(code):
-                currentGroupIndex = self.__getGroup(code)
-                if currentGroupIndex == previousGroupIndex and currentGroupIndex >= 0:
-                    resultList[len(resultList) -
-                               1] = resultList[len(resultList) - 1] + input[i]
-                else:
+                if self.__isContainedInWord(word + input[i]):
+                    if self.__isWord(word + input[i]) and self.__isNotALetter(ord(input[i + 1])):
+                        resultList.append(word + input[i])
+                        word = ""
+                    else:
+                        word = word + input[i]
+                elif self.__isNotALetter(code) and isNumber(input[i] == False):
                     resultList.append(input[i])
-                previousGroupIndex = currentGroupIndex
+                elif isNumber(input[i]):
+                    if isNumber(input[i + 1]) == False:
+                        resultList.append(number + input[i])
+                        number = ""
+                    else:
+                        number += input[i]
             else:
-                previousGroupIndex = -1
+                word = ""
+                number = ""
         return resultList
 
     # not needed!

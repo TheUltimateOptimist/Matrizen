@@ -1,3 +1,4 @@
+from color import printRed
 from variables import Variables
 from term import Term
 from attributes import Attributes
@@ -19,7 +20,10 @@ class TerminalSession:
 
     def interact(self):
         operation = input(">: ")
-        evaluateExpression(operation, self.variables)
+        try:
+            evaluateExpression(operation, self.variables)
+        except:
+            printRed("ERROR: UNGÜLTIGE EINGABE")
         self.interact()
 
 
