@@ -1,9 +1,9 @@
 from color import printRed, printBlue
+from language import matrixChecks
 
 
 class Attributes:
-    attributes = ["symmetrisch", "quadratisch", "Einheitsmatrix", "Diagonalmatrix",
-                  "Nullmatrix", "untereDreiecksmatrix", "obereDreiecksmatrix", "invertierbar", "Eigenschaften"]
+    attributes = matrixChecks
 
     def isAttribute(self, attribute):
         for element in self.attributes:

@@ -7,7 +7,7 @@ class Calculator:
         self.b = b
 
     def __matrixMatrix(self):
-        if str(self.a.__class__) == "<class '__main__.Matrix'>" and self.a.__class__ == self.b.__class__:
+        if str(self.a.__class__) == "<class 'matrix.Matrix'>" and self.a.__class__ == self.b.__class__:
             return True
         else:
             return False
@@ -19,25 +19,25 @@ class Calculator:
             return False
 
     def __matrixNumber(self):
-        if str(self.a.__class__) == "<class '__main__.Matrix'>" and str(self.b.__class__) == "<class '__main__.Number'>":
+        if str(self.a.__class__) == "<class 'matrix.Matrix'>" and str(self.b.__class__) == "<class 'number.Number'>":
             return True
         else:
             return False
 
     def __numberMatrix(self):
-        if str(self.a.__class__) == "<class '__main__.Number'>" and str(self.b.__class__) == "<class '__main__.Matrix'>":
+        if str(self.a.__class__) == "<class 'number.Number'>" and str(self.b.__class__) == "<class 'matrix.Matrix'>":
             return True
         else:
             return False
 
     def __isMatrix(self):
-        if str(self.a.__class__) == "<class '__main__.Matrix'>":
+        if str(self.a.__class__) == "<class 'matrix.Matrix'>":
             return True
         else:
             return False
 
     def __isNumber(self):
-        if str(self.a.__class__) == "<class '__main__.Number'>":
+        if str(self.a.__class__) == "<class 'number.Number'>":
             return True
         else:
             return False

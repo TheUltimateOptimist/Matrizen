@@ -10,29 +10,11 @@ class Term:
         self.tokensList = TokenListPreparer(
             Tokenizer("mathematical").tokenize(textString)).prepare()
 
-    def __printSolution(solution):
-        if solution.__class__ == "matrix":
+    def __printSolution(self, solution):
+        if str(solution.__class__) == "<class 'matrix.Matrix'>":
             solution.printMatrix()
-        elif solution.__class__ == "number":
+        elif str(solution.__class__) == "<class 'number.Number'>":
             solution.printNumber()
-
-    def __getClosingBraceIndex(self, openingBraceIndex, list):
-        print("data:")
-        print(openingBraceIndex)
-        print(list)
-        state = 0
-        i = openingBraceIndex + 1
-        while i < len(list):
-            element = list[i]
-            if element == "(":
-                state += 1
-            elif element == ")" and state != 0:
-                state -= 1
-            elif element == ")" and state == 0:
-                return i
-            i += 1
-            print("state: ")
-            print(state)
 
     def calculate(self, shouldPrint=False):
         i = 0
