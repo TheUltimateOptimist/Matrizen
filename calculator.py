@@ -7,37 +7,37 @@ class Calculator:
         self.b = b
 
     def __matrixMatrix(self):
-        if self.a.__class__ == "<class '__main__.Matrix'>" and self.a.__class__ == self.b.__class__:
+        if str(self.a.__class__) == "<class '__main__.Matrix'>" and self.a.__class__ == self.b.__class__:
             return True
         else:
             return False
 
     def __numberNumber(self):
-        if self.a.__class__ == "<class '__main__.Number'>" and self.a.__class__ == self.b.__class__:
+        if str(self.a.__class__) == "<class 'number.Number'>" and self.a.__class__ == self.b.__class__:
             return True
         else:
             return False
 
     def __matrixNumber(self):
-        if self.a.__class__ == "<class '__main__.Matrix'>" and self.b.__class__ == "<class '__main__.Number'>":
+        if str(self.a.__class__) == "<class '__main__.Matrix'>" and str(self.b.__class__) == "<class '__main__.Number'>":
             return True
         else:
             return False
 
     def __numberMatrix(self):
-        if self.a.__class__ == "<class '__main__.Number'>" and self.b.__class__ == "<class '__main__.Matrix'>":
+        if str(self.a.__class__) == "<class '__main__.Number'>" and str(self.b.__class__) == "<class '__main__.Matrix'>":
             return True
         else:
             return False
 
     def __isMatrix(self):
-        if self.a.__class__ == "<class '__main__.Matrix'>":
+        if str(self.a.__class__) == "<class '__main__.Matrix'>":
             return True
         else:
             return False
 
     def __isNumber(self):
-        if self.a.__class__ == "<class '__main__.Number'>":
+        if str(self.a.__class__) == "<class '__main__.Number'>":
             return True
         else:
             return False
@@ -73,7 +73,7 @@ class Calculator:
             return self.b.multiplyWithNumber(self.a)
         else:
             printRed(
-                f"ERROR: DIE SUBTRAKTION DER KLASSEN {self.a.__class__} UND {self.b.__class__} IST NICHT DEFINIERT!")
+                f"ERROR: DIE MULTIPLIKATION DER KLASSEN {self.a.__class__} UND {self.b.__class__} IST NICHT DEFINIERT!")
             return None
 
     def divide(self):

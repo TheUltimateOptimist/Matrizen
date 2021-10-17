@@ -11,7 +11,7 @@ def evaluateExpression(expression, variables):
         print(Attributes().check(expression.split(".")[
               0].strip(), variables.getValue(expression.split(".")[1].strip())))
     else:
-        Term(expression.strip()).calculate()
+        Term(expression.strip()).calculate(True)
 
 
 class TerminalSession:
