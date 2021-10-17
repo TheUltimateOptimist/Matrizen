@@ -9,7 +9,7 @@ def evaluateExpression(expression, variables):
             expression.split("=")[1].strip()).calculate())
     elif expression.__contains__("."):
         print(Attributes().check(expression.split(".")[
-              0].strip(), expression.split(".")[1].strip()))
+              0].strip(), variables.getValue(expression.split(".")[1].strip())))
     else:
         Term(expression.strip()).calculate()
 

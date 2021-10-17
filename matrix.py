@@ -165,11 +165,6 @@ class Matrix:
         # following returrn statement is just for now
         return False
 
-    def isInvertable(self):
-        # todo: implement invertable checking
-        # following return statement is only for now
-        return False
-
     def getAttributes(self):
         properties = []
         if self.isNullMatrix():
