@@ -206,7 +206,3 @@ class Matrix:
             elif self.isLowerTriangleMatrix():
                 properties.append("untere Dreiecksmatrix")
         return properties
-
-
-matrix = Matrix([])
-print(matrix.__class__)
