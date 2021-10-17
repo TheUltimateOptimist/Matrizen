@@ -12,7 +12,7 @@ class Attributes:
         return False
 
     def check(self, variable, attribute):
-        if variable.__class__ == "<class '__main__.Matrix'>":
+        if str(variable.__class__) == "<class '__main__.Matrix'>":
             match attribute:
                 case "symmetrisch":
                     return variable.isSymmetricMatrix()
@@ -37,7 +37,7 @@ class Attributes:
                 case _:
                     printRed(
                         f"ERROR: DIE OPERATION {attribute} IST FÜR DIE KLASSE MATRIX NICHT DEFINIERT!")
-        elif variable.__class__ == "<class '__main__.Number'>":
+        elif str(variable.__class__) == "<class '__main__.Number'>":
             printRed(
                 f"ERROR: DER BEFEHL {attribute} IST FÜR ZAHLEN NICHT DEFINIERT!")
             return None
