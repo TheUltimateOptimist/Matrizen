@@ -70,3 +70,4 @@ class TokenListPreparer:
         self.__convertNumbers()
         self.__dissolveVariables()
         self.__dissolveGenerators()
+        return self.tokenList
