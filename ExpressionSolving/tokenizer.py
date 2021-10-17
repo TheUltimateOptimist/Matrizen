@@ -1,5 +1,5 @@
 from language import matrixChecks, generateMatrixCommands
-from mathFunctions import isNumber
+from littleFunctions.mathFunctions import isNumber
 
 
 class Tokenizer:

@@ -1,4 +1,4 @@
-from color import printRed
+from littleFunctions.color import printRed
 
 
 class Calculator:

@@ -1,4 +1,4 @@
-from randomNumbers import randomNumber
+from littleFunctions.randomNumbers import randomNumber
 from matrix import Matrix
 
 

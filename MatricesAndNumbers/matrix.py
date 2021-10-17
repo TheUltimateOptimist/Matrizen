@@ -1,5 +1,5 @@
-from color import printRed
-from listHelper import getNumbersLengthList
+from littleFunctions.color import printRed
+from littleFunctions.listHelper import getNumbersLengthList
 from number import Number
 
 

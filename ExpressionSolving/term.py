@@ -1,8 +1,8 @@
-from listHelper import split_list, delete_range
+from littleFunctions.listHelper import split_list, delete_range
 from calculator import Calculator
 from tokenListPreparer import TokenListPreparer
 from tokenizer import Tokenizer
-from mathFunctions import getClosingBraceIndex
+from littleFunctions.mathFunctions import getClosingBraceIndex
 
 
 class Term:

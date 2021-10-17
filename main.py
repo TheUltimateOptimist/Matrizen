@@ -1,7 +1,7 @@
-from color import printRed
+from littleFunctions.color import printRed
 from variables import Variables
-from term import Term
-from attributes import Attributes
+from ExpressionSolving.term import Term
+from MatricesAndNumbers.attributes import Attributes
 
 
 def evaluateExpression(expression, variables):

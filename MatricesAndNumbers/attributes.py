@@ -1,4 +1,4 @@
-from color import printRed, printBlue
+from littleFunctions.color import printRed, printBlue
 from language import matrixChecks
 
 

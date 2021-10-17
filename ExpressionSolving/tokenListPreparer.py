@@ -1,7 +1,7 @@
-from mathFunctions import isNumber, getClosingBraceIndex
-from number import Number
+from littleFunctions.mathFunctions import isNumber, getClosingBraceIndex
+from MatricesAndNumbers.number import Number
 from variables import Variables
-from matrixGenerator import MatrixGenerator
+from MatricesAndNumbers.matrixGenerator import MatrixGenerator
 
 
 class TokenListPreparer:
