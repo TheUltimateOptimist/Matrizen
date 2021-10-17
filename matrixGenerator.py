@@ -1,5 +1,5 @@
 from randomNumbers import randomNumber
-from color import printRed
+from matrix import Matrix
 
 
 class MatrixGenerator:
@@ -21,7 +21,7 @@ class MatrixGenerator:
             for number in list:
                 currentRow.append(int(number))
             value.append(currentRow)
-        return value
+        return Matrix(value)
 
     def symmetricMatrix(self, value, m):
         for i in range(m):
@@ -31,7 +31,7 @@ class MatrixGenerator:
                     value[i].append(a)
                 except:
                     value[i].append(randomNumber(self.maxNumber))
-        return value
+        return Matrix(value)
 
     def upperTriangleMatrix(self, value, m):
         for i in range(m):
@@ -40,7 +40,7 @@ class MatrixGenerator:
                     value[i].append(0)
                 else:
                     value[i].append(randomNumber(self.maxNumber))
-        return value
+        return Matrix(value)
 
     def lowerTriangleMatrix(self, value, m):
         for i in range(m):
@@ -49,7 +49,7 @@ class MatrixGenerator:
                     value[i].append(0)
                 else:
                     value[i].append(randomNumber(self.maxNumber))
-        return value
+        return Matrix(value)
 
     def diagonalMatrix(self, value, m):
         for i in range(m):
@@ -58,13 +58,13 @@ class MatrixGenerator:
                     value[i].append(randomNumber(self.maxNumber))
                 else:
                     value[i].append(0)
-        return value
+        return Matrix(value)
 
     def quadraticMatrix(self, value, m):
         for i in range(m):
             for j in range(m):
                 value[i].append(randomNumber(self.maxNumber))
-        return value
+        return Matrix(value)
 
     def identityMatrix(self, value, m):
         for i in range(m):
@@ -73,19 +73,19 @@ class MatrixGenerator:
                     value[i].append(1)
                 else:
                     value[i].append(0)
-        return value
+        return Matrix(value)
 
     def zeroMatrix(self, value, m, n):
         for i in range(m):
             for j in range(n):
                 value[i].append(0)
-        return value
+        return Matrix(value)
 
     def randomMatrix(self, value, m, n):
         for i in range(m):
             for _ in range(n):
                 value[i].append(randomNumber(self.maxNumber, includeZero=True))
-        return value
+        return Matrix(value)
 
     def generateMatrix(self, matrixType):
         if matrixType != "Benutzereingabe":
@@ -115,6 +115,4 @@ class MatrixGenerator:
             case "ZufallsMatrix":
                 return self.randomMatrix(value, m, n)
             case _:
-                printRed(
-                    f"ERROR: MATRIX NICHT GENERIERBAR AUFGRUND VON UNBEKANNTEM MATRIX TYP: '{matrixType}'")
                 return None

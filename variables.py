@@ -11,3 +11,6 @@ class Variables:
 
     def contains(self, name):
         return False
+
+    def getValue(self, name):
+        return []
