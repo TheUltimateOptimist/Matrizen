@@ -1,16 +1,27 @@
 class Variables:
     def __init__(self):
-        names = []
-        values = []
+        self.names = []
+        self.values = []
 
     def add(self, name, value):
-        return 0.0
+        self.names.append(name)
+        self.values.append(value)
 
     def remove(self, name):
-        return 9
+        for i, variable in enumerate(self.names):
+            if variable == name:
+                del self.names[i]
+                del self.values[i]
+                break
 
     def contains(self, name):
+        for variable in self.names:
+            if variable == name:
+                return True
         return False
 
     def getValue(self, name):
-        return []
+        for i, variable in enumerate(self.names):
+            if variable == name:
+                return self.values[i]
+        return None
