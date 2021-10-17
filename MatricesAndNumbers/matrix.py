@@ -1,6 +1,6 @@
 from littleFunctions.color import printRed
 from littleFunctions.listHelper import getNumbersLengthList
-from number import Number
+from MatricesAndNumbers.number import Number
 
 
 class Matrix:

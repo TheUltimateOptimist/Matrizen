@@ -1,5 +1,5 @@
 from littleFunctions.randomNumbers import randomNumber
-from matrix import Matrix
+from MatricesAndNumbers.matrix import Matrix
 
 
 class MatrixGenerator:

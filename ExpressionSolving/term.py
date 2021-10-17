@@ -1,7 +1,7 @@
 from littleFunctions.listHelper import split_list, delete_range
-from calculator import Calculator
-from tokenListPreparer import TokenListPreparer
-from tokenizer import Tokenizer
+from ExpressionSolving.calculator import Calculator
+from ExpressionSolving.tokenListPreparer import TokenListPreparer
+from ExpressionSolving.tokenizer import Tokenizer
 from littleFunctions.mathFunctions import getClosingBraceIndex
 
 
