@@ -12,7 +12,7 @@ class Attributes:
         return False
 
     def check(self, variable, attribute):
-        if str(variable.__class__) == "<class '__main__.Matrix'>":
+        if str(variable.__class__) == "<class 'MatricesAndNumbers.matrix.Matrix'>":
             match attribute:
                 case "symmetrisch":
                     return variable.isSymmetricMatrix()
