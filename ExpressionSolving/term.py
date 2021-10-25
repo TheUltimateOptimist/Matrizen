@@ -11,9 +11,9 @@ class Term:
             Tokenizer().tokenize(textString)).prepare()
 
     def __printSolution(self, solution):
-        if str(solution.__class__) == "<class 'matrix.Matrix'>":
+        if str(solution.__class__) == "<class 'MatricesAndNumbers.matrix.Matrix'>":
             solution.printMatrix()
-        elif str(solution.__class__) == "<class 'number.Number'>":
+        elif str(solution.__class__) == "<class 'MatricesAndNumbers.number.Number'>":
             solution.printNumber()
 
     def calculate(self, shouldPrint=False):

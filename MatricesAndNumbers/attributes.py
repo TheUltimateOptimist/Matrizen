@@ -31,9 +31,10 @@ class Attributes:
                 case "invertierbar":
                     return variable.isInvertableMatrix()
                 case "Eigenschaften":
-                    for element in variable.getAttributes():
-                        printBlue(element)
-                    return ""
+                    attributes = variable.getAttributes()
+                    for attribute in attributes:
+                        printBlue(attribute)
+                    return attributes
                 case _:
                     printRed(
                         f"ERROR: DIE OPERATION {attribute} IST FÜR DIE KLASSE MATRIX NICHT DEFINIERT!")

@@ -22,7 +22,6 @@ class Matrix:
 
     def printMatrix(self):
         list = self.value
-        print(list)
         additionalSpaces = getNumbersLengthList(list)
         for i, row in enumerate(list):
             outputString = ""
@@ -30,6 +29,7 @@ class Matrix:
                 outputString += str(element)
                 outputString += additionalSpaces[i][j]*" "
             print(outputString)
+        return True
 
     def addMatrix(self, matrix):
         if (len(self.value) == len(matrix.value)) and (len(self.value[0]) == len(matrix.value[0])):
@@ -53,15 +53,16 @@ class Matrix:
                 for j, number in enumerate(row):
                     newRow.append(number - matrix.value[i][j])
                 newValue.append(newRow)
-            return newValue
+            return Matrix(newValue)
         else:
             print(
                 "ERROR: FÜR DIE SUBTRAKTION ZWEIER MATRIZEN MÜSSEN DIE DIMENSIONEN ÜBEREINSTIMMEN")
             return None
 
     def multiplyWithMatrix(self, matrix):
-        # todo: implement matrix multiplying
-        # following return statement is just for now
+        # Zwei Matrizen lassen sich nur dann miteinander multiplizieren,
+        # wenn die Spaltenanzahl der ersten Matrix mit der Zeilenanzahl
+        # der zweiten Matrix übereinstimmt.
         return matrix
 
     def divideByMatrix(self, matrix):
@@ -75,6 +76,8 @@ class Matrix:
         return self
 
     def divideByNumber(self, number):
+        if not self.value:
+            return self
         if number.value == 0:
             printRed("ERROR: DAS TEILEN DURCH O IST NICHT DEFINIERT!")
         else:
@@ -90,6 +93,10 @@ class Matrix:
         return Matrix(newValue)
 
     def transpose(self):
+        # Zeilen der Eingansmatrix werden zu Spalten der Ausgangsmatrix
+        # return self again if self is a matrix without any entrys
+        if not self.value:
+            return self
         newValue = []
         for i in range(len(self.value[0])):
             newRow = []
@@ -171,7 +178,7 @@ class Matrix:
             transponedMatrix = Matrix(self.value).transpose()
             for i in range(m):
                 for j in range(m):
-                    if self.value[i][j] != transponedMatrix[i][j]:
+                    if self.value[i][j] != transponedMatrix.value[i][j]:
                         return False
             return True
         else:
@@ -195,7 +202,7 @@ class Matrix:
             if self.isIdentityMatrix():
                 properties.append("Einheitsmatrix")
                 properties.append("Diagonalmatrix")
-                properties.append("obere Dreieckmatrix")
+                properties.append("obere Dreiecksmatrix")
                 properties.append("untere Dreiecksmatrix")
             elif self.isDiagonalMatrix():
                 properties.append("Diagonalmatrix")

@@ -12,7 +12,7 @@ class Number:
         return Number(self.value - number.value)
 
     def multiplyWithNumber(self, number):
-        return Number(self.value + number.value)
+        return Number(self.value * number.value)
 
     def divideByNumber(self, number):
         if number.value == 0:
@@ -23,12 +23,13 @@ class Number:
 
     def printNumber(self):
         print(self.value)
+        return True
 
     def exponentiateByNumber(self, number):
         return Number(self.value**number.value)
 
     def takeSquareRoot(self):
-        if self.value <= 0:
+        if self.value < 0:
             printRed("ERROR: DIE WURZEL EINER NEGATIVEN ZAHL IST NICHT DEFINIERT!")
             return None
         else:
