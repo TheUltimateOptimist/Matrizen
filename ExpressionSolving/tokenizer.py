@@ -1,5 +1,6 @@
 from language import matrixChecks, generateMatrixCommands
 from littleFunctions.mathFunctions import isNumber
+from variables import Variables
 
 
 class Tokenizer:
@@ -18,8 +19,8 @@ class Tokenizer:
 
     def __init__(self):
         self.tokens = [[33], [40, 45], [
-            47, 57], [94], ]
-        self.words = matrixChecks + generateMatrixCommands
+            47, 57], [94], [65, 90], [97, 122]]
+        self.words = matrixChecks + generateMatrixCommands + Variables.names
 
     def __isWord(self, textString):
         for word in self.words:
@@ -41,7 +42,10 @@ class Tokenizer:
                 return True
         return False
 
-    def __isNotALetter(self, code):
+    def __nextSymbolNotALetter(self, currentIndex, text):
+        if len(text) == currentIndex + 1:
+            return True
+        code = ord(text[currentIndex + 1])
         if (code < 65 or code > 90) and (code < 97 or code > 122):
             return True
         else:
@@ -55,12 +59,12 @@ class Tokenizer:
             code = ord(input[i])
             if self.__matches(code):
                 if self.__isContainedInWord(word + input[i]):
-                    if self.__isWord(word + input[i]) and self.__isNotALetter(ord(input[i + 1])):
+                    if self.__isWord(word + input[i]) and self.__nextSymbolNotALetter(i, input):
                         resultList.append(word + input[i])
                         word = ""
                     else:
                         word = word + input[i]
-                elif self.__isNotALetter(code) and isNumber(input[i] == False):
+                elif self.__nextSymbolNotALetter(i, input) and isNumber(input[i] == False):
                     resultList.append(input[i])
                 elif isNumber(input[i]):
                     if isNumber(input[i + 1]) == False:

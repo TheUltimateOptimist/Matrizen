@@ -4,26 +4,25 @@ from ExpressionSolving.term import Term
 from MatricesAndNumbers.attributes import Attributes
 
 
-def evaluateExpression(expression, variables):
+def evaluateExpression(expression):
     if expression.__contains__("="):
-        variables.add(expression.split("=")[0].strip(), Term(
+        Variables.add(expression.split("=")[0].strip(), Term(
             expression.split("=")[1].strip()).calculate())
     elif expression.__contains__("."):
-        print(Attributes().check(expression.split(".")[
-              0].strip(), variables.getValue(expression.split(".")[1].strip())))
+        print(Attributes().check(Variables.getValue(expression.split(".")[
+              0].strip()), expression.split(".")[1].strip()))
     else:
-        Term(expression.strip()).calculate(True)
+        Term(expression.strip()).calculate(shouldPrint = True)
 
 
 class TerminalSession:
-    variables = Variables()
 
     def interact(self):
         operation = input(">: ")
-        try:
-            evaluateExpression(operation, self.variables)
-        except:
-            printRed("ERROR: UNGÜLTIGE EINGABE")
+        #try:
+        evaluateExpression(operation)
+        #except:
+        #printRed("ERROR: UNGÜLTIGE EINGABE")
         self.interact()
 
 
